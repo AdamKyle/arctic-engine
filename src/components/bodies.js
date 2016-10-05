@@ -16,7 +16,8 @@ export default class BodyComponent extends Component {
 
     this._childrenWithProps = React.Children.map(this.props.children,
         (child) => React.cloneElement(child, {
-            body: this._body,
+            body:   this._body,
+            engine: this.props.engine,
         })
     );
   }
