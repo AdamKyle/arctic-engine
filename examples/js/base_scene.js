@@ -1,5 +1,5 @@
 import React, {Component}      from 'react';
-import Matter, {Bodies, World} from 'matter-js';
+import { BodyComponent }       from '../../src/';
 
 export default class BaseScene extends Component {
 
@@ -10,11 +10,6 @@ export default class BaseScene extends Component {
   }
 
   init(engine) {
-    var boxA   = Bodies.rectangle(400, 200, 80, 80);
-    var boxB   = Bodies.rectangle(450, 50, 80, 80);
-    var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
-
-    World.add(engine.world, [boxA, boxB, ground])
   }
 
   componentWillMount() {
@@ -27,7 +22,11 @@ export default class BaseScene extends Component {
 
   render () {
     return (
-      <div></div>
+      <div>
+        <BodyComponent dimensions={[400, 200, 80, 80]} engine={this.props.engine}></BodyComponent>
+        <BodyComponent dimensions={[450, 50, 80, 80]} engine={this.props.engine}></BodyComponent>
+        <BodyComponent dimensions={[400, 610, 810, 60]} options={{isStatic: true}} engine={this.props.engine}></BodyComponent>
+      </div>
     );
   }
 }

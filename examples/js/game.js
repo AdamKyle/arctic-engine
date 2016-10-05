@@ -1,4 +1,4 @@
-import {Loop, SceneManager}    from '../../dist/engine';
+import {Loop, SceneManager}    from '../../src/';
 import React, {Component}      from 'react';
 import BaseScene               from './base_scene';
 

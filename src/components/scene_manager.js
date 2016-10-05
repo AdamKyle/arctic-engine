@@ -20,6 +20,7 @@ export default class SceneManager extends Component {
             goTo:         this.goTo,
             gameLoop:     props.loop,
             terminate:    this.terminate,
+            engine:       this._sceneManager.getEngine(),
         })
     );
 
