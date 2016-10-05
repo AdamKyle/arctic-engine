@@ -98,7 +98,7 @@ These methods can be called in each scene.
 
   The above is what adds the children (BaseScene, SceneA, SceneB and so on from a previous example) to the scene manager stack. We start on the baseScene and then you have helper methods to allow you to move between scenes. Each time you do the previous scenes `componentWillUnmount` method is called. Make sure to clean up and stop the the previous scene before switching.
 
-## About Bodies
+## Bodies
 
 We have a body component that you would use in your scenes. This is what renders the bodies to the screen.
 
@@ -116,6 +116,32 @@ For each scene you will have:
 ```
 
 This would render out the body to the world. All children of the `BodyComponent` have access to a single property called `body`. This allows you to manipulate the body via [Matter JS's API](http://brm.io/matter-js/docs/index.html)
+
+## Sprites
+
+To create a sprite is super simple all you have to do is use:
+
+```js
+  <Sprite spriteArgs={['./images/The-Poet.png', 48, 48, 0, 0, 100, 3, 4]} />
+```
+
+All Sprite characters should be 3x4 (that is 3*48 X 4*48), see the `example/images/The-Poet.png` for example.
+
+The arguments are as follows: `img, width, height, x, y, speed, xFrames, yFrames`
+
+- `img`: The source.
+- `width`: The width of one frame.
+- `height`: The height of one frame.
+- `x`: Where the x position is (0, 48, 96, ...) (multiples of 48)
+- `y`: Where the y position is: (0, 48, 96, ...) (multiples of 48)
+- `speed`: the smaller, the faster we animate
+- `xFrames`: How many frames across the top?
+- `yFrames`: How many frames down the side?
+
+> ATTN!
+>
+> The key handler that is used to listen for inputs for up, down, right, left only support an yFrame maximum of 4.
+> Your `xFrames` can be as long as you want it to be, but your `yFrames` can only be 4 to represent the 4 directions.
 
 
 # Building:
