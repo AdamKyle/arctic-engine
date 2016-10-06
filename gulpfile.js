@@ -13,3 +13,7 @@ gulp.task('make:example', function() {
       .pipe(source('compiled-example.js'))
       .pipe(gulp.dest('dist/example/'));
 });
+
+gulp.task('watch', ['make:example'], function(){
+  return watch(['src/**/*.js', 'examples/**/*.js'], ['make:example']);
+});
