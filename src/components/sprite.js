@@ -21,6 +21,8 @@ export default class Sprite extends Component {
     this.state = {
       current_frame: 0,
     }
+
+    console.log(props.body);
   }
 
   update = () => {
