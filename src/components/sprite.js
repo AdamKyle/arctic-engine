@@ -20,18 +20,12 @@ export default class Sprite extends Component {
 
     this.state = {
       current_frame: 0,
-      position: {x: this.props.body.position.x, y: this.props.body.position.y},
     }
   }
 
   update = () => {
-    const body      = this.props.body;
-    const velcoityY = parseFloat(body.velocity.y.toFixed(10));
-
-    if (velcoityY === 0) {
-      Matter.Body.set(body, 'friction', 0.9999);
-    }
-
+    const body = this.props.body;
+    
     if (this._keyHandler.isDown(this._keyHandler.down())) {
       this._sprite.setY(0);
     }
@@ -77,10 +71,6 @@ export default class Sprite extends Component {
     clearInterval(this._loopId);
     this._keyHandler.stopListening();
     Matter.Events.off(this.props.engine, 'afterUpdate', this.update);
-  }
-
-  handleKeyPress(e) {
-    console.log(e.key, 'asdasdd');
   }
 
   render() {
