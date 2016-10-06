@@ -5,14 +5,18 @@ export default class BodyComponent extends Component {
 
   static defaultProps = {
     dimensions: [0, 0, 0, 0],
-    options:    {},
-    shape:      'rectangle',
+    options:    {
+      restitution: 0,
+      friction: 1,
+      frictionStatic: 0,
+    },
+    shape: 'rectangle',
   };
 
   constructor(props) {
     super(props);
 
-    this._body = Bodies[props.shape](...props.dimensions, props.options)
+    this._body = Bodies[props.shape](...props.dimensions, props.options);
 
     this._childrenWithProps = React.Children.map(this.props.children,
         (child) => React.cloneElement(child, {

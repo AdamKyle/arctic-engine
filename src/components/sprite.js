@@ -24,8 +24,6 @@ export default class Sprite extends Component {
   }
 
   update = () => {
-    const body = this.props.body;
-    
     if (this._keyHandler.isDown(this._keyHandler.down())) {
       this._sprite.setY(0);
     }

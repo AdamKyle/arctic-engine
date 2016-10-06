@@ -103,8 +103,11 @@ export default class SceneManager {
 
   sceneStyles() {
     return {
-      width: 1170,
-      height: 800,
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      width: '100%',
+      height: '100%',
     }
   }
 
