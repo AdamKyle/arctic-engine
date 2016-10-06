@@ -1,5 +1,6 @@
 import React, {Component}        from 'react';
 import { BodyComponent, Sprite } from '../../src/';
+import Matter                    from  'matter-js';
 
 export default class BaseScene extends Component {
 
@@ -10,6 +11,15 @@ export default class BaseScene extends Component {
   }
 
   init(engine) {
+    const ground = Matter.Bodies.rectangle(
+      this.props.sceneManager.sceneStyles().width,
+      this.props.sceneManager.sceneStyles().height,
+      0,
+      -this.props.sceneManager.sceneStyles().height,
+      {isStatic: true},
+    );
+
+    Matter.World.addBody(engine.world, ground);
   }
 
   componentWillMount() {
@@ -22,8 +32,8 @@ export default class BaseScene extends Component {
 
   render () {
     return (
-      <div>
-        <BodyComponent dimensions={[400, 200, 80, 80]} engine={this.props.engine}>
+      <div style={this.props.sceneManager.sceneStyles()}>
+        <BodyComponent dimensions={[0, 0, 48, 48]} engine={this.props.engine}>
           <Sprite spriteArgs={['./images/The-Poet.png', 48, 48, 0, 0, 100, 3, 4]} />
         </BodyComponent>
       </div>

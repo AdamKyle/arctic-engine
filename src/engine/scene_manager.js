@@ -101,6 +101,13 @@ export default class SceneManager {
     }
   }
 
+  sceneStyles() {
+    return {
+      width: 1170,
+      height: 800,
+    }
+  }
+
   clear() {
     Matter.World.clear(this._engine.world, true);
   }
