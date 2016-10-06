@@ -13,7 +13,7 @@ export default class BaseScene extends Component {
   init(engine) {
     const ground = Matter.Bodies.rectangle(
       0,
-      0,
+      -400,
       this.props.sceneManager.sceneStyles().width,
       this.props.sceneManager.sceneStyles().height,
       {isStatic: true},
