@@ -1,21 +1,17 @@
 import React, {Component}        from 'react';
-import { BodyComponent, Sprite } from '../../src/';
+import { BodyComponent, Sprite, KeyHandler } from '../../src/';
 import Matter                    from  'matter-js';
+import Character                 from './character';
 
 export default class BaseScene extends Component {
 
   constructor(props) {
     super(props);
-
-    this.init = this.init.bind(this);
   }
 
-  init(engine) {
+  init = (engine) => {
     const ground = Matter.Bodies.rectangle(
-      0,
-      -400,
-      this.props.sceneManager.sceneStyles().width,
-      this.props.sceneManager.sceneStyles().height,
+      400, 610, 1170, 800,
       {isStatic: true},
     );
 
@@ -33,9 +29,7 @@ export default class BaseScene extends Component {
   render () {
     return (
       <div style={this.props.sceneManager.sceneStyles()}>
-        <BodyComponent dimensions={[0, 0, 48, 48]} engine={this.props.engine}>
-          <Sprite spriteArgs={['./images/The-Poet.png', 48, 48, 0, 0, 100, 3, 4]} />
-        </BodyComponent>
+        <Character engine={this.props.engine} />
       </div>
     );
   }

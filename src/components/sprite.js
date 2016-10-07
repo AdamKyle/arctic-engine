@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CoreSprite           from '../engine/sprite';
-import KeyHandler           from '../engine/key_handler';
 import Matter               from 'matter-js';
+import {KeyHandler}         from '../';
 
 export default class Sprite extends Component {
 
@@ -23,9 +23,7 @@ export default class Sprite extends Component {
     }
   }
 
-  update = () => {
-    const body = this.props.body;
-    
+  updateSpriteDirection = () => {
     if (this._keyHandler.isDown(this._keyHandler.down())) {
       this._sprite.setY(0);
     }
@@ -44,6 +42,8 @@ export default class Sprite extends Component {
   }
 
   componentDidMount() {
+    Matter.Events.on(this.props.engine, 'afterUpdate', this.updateSpriteDirection);
+
     this._keyHandler.startListening([
         this._keyHandler.left(),
         this._keyHandler.right(),
@@ -51,8 +51,6 @@ export default class Sprite extends Component {
         this._keyHandler.up(),
         this._keyHandler.space(),
     ]);
-
-    Matter.Events.on(this.props.engine, 'afterUpdate', this.update);
 
     this._loopId = setInterval(() => {
       if (this.state.current_frame === this._sprite.xFrames()) {

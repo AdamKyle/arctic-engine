@@ -107,8 +107,11 @@ For each scene you will have:
 ```js
 <BodyComponent
     shape={'rectangle'}
-    dimensions={[x, y, w, h]},
-    options={{}},
+    dimensions={[x, y, w, h]}
+    options={{}}
+    position={{x: 0, y: 0}}
+    jumping={func}
+    update={func}
     engine={this.props.engine}
 >
   // You have access to the body prop here.
@@ -116,6 +119,23 @@ For each scene you will have:
 ```
 
 This would render out the body to the world. All children of the `BodyComponent` have access to a single property called `body`. This allows you to manipulate the body via [Matter JS's API](http://brm.io/matter-js/docs/index.html)
+
+### options
+
+options is an object that references the associated shape for the [body](http://brm.io/matter-js/docs/classes/Bodies.html).
+
+### update
+
+This is a function thats passed to the body to be added to it's Event handling for the engine update. This is where you handle things like character movement.
+
+### jumping
+
+This method gets passed a param called body, which is a reference to the [Body api in Matter JS](http://brm.io/matter-js/docs/classes/Body.html).
+
+### position
+
+This is a state object that gets updated when the the character moves left to right or is jumping or not. It gets passed and updates the stylistic properties of the body object. The `x` and `y` should start off referencing the
+`options.position.x/y` and then be updated from there based on key presses.
 
 ## Sprites
 
@@ -142,6 +162,46 @@ The arguments are as follows: `img, width, height, x, y, speed, xFrames, yFrames
 >
 > The key handler that is used to listen for inputs for up, down, right, left only support an yFrame maximum of 4.
 > Your `xFrames` can be as long as you want it to be, but your `yFrames` can only be 4 to represent the 4 directions.
+
+We then want to attach the sprite to a body so that we can preform actions such as movement:
+
+```js
+<BodyComponent
+    shape={'rectangle'}
+    dimensions={[x, y, w, h]}
+    options={{}}
+    position={{x: 0, y: 0}}
+    jumping={func}
+    update={func}
+    engine={this.props.engine}
+>
+  <Sprite spriteArgs={['./images/The-Poet.png', 48, 48, 0, 0, 100, 3, 4]} />
+</BodyComponent>
+```
+
+All sprites should have a body component attached to them.
+
+## Key Handler
+
+The Key Handler is a class that any component can use that simply listens to key presses. The keys are: Left, Right, Up, Down and Space.
+
+| Method        | Params | Returns  |
+| ------------- |--------| ---------|
+| **`left()`**  | None   | 37 (Key Code) |
+| **`right()`** | None   | 39 (Key Code) |
+| **`down()`**  | None   | 40 (Key Code) |
+| **`up()`**    | None   | 38 (Key Code) |
+| **`space()`** | None   | 32 (Key Code) |
+| **`keyDown()`** | event | null (Sets the key code in the array to true, symbolizing its down) |
+| **`keyUp()`**   | event | null (Sets the key code in the array to false, symbolizing its up) |
+| **`isDown()`**  | keyCode | boolean |
+| **`startListening()`** | Array | null (Takes an array of key codes and adds window listener for the `keyUp` and `keyDown`)|
+| **`stopListening()`** | None | null (Removes the window listeners and stops listening to key inputs) |
+
+> ATTN!!
+>
+> In the `componentDidMount` call `startListening` and in the `componentWillUnmount` call the
+> `stopListening` function. This should be done in any component thats using the key handler.
 
 
 # Building:
