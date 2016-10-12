@@ -6,7 +6,7 @@
     "react",
     "reactjs"
   ],
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "author": {
     "name": "Adam Balan",
     "email": "adamkylebalan@gmail.com"

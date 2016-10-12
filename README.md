@@ -9,8 +9,6 @@ scenes in your game.
 When it comes right down to it we have the most basic setup to get up and running:
 
 ```js
-import {Loop, SceneManager} from 'engine';
-
 <Loop>
   <SceneManager>
     // Scenes Here
