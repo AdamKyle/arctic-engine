@@ -1,6 +1,6 @@
-# Ice Cream Engine
+# ArcticEngine
 
-Ice Cream Engine is an experimental engine written using [Matter JS](http://brm.io/matter-js/docs/index.html) and [React JS](https://facebook.github.io/react/). the whole goal is to create a small
+Arctic Engine is an experimental engine written using [Matter JS](http://brm.io/matter-js/docs/index.html) and [React JS](https://facebook.github.io/react/). the whole goal is to create a small
 prototype engine that can be used to make simple games. It consists of a Loop and a Scene Manager to handle various
 scenes in your game.
 
